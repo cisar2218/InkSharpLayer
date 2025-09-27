@@ -1,0 +1,8 @@
+{
+  "chains": [
+    {
+      "name": "PassetHub",
+      "websocket": "wss://passet-hub-paseo.ibp.network"
+    }
+  ]
+}
