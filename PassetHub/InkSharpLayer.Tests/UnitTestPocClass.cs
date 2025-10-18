@@ -30,15 +30,18 @@ namespace InkSharpLayer.Tests
         [Fact]
         public async Task TestDaoContractInfoQueryOk()
         {
-            string contractAddress = "0x170eAb77A1911b43cE5B9E09fd610861026AD42e";
+            string contractAddress = "0xda30aa6Ba225E8245746b8Adbca489872F037708";
             PassetHub.NetApi.Generated.Model.pallet_revive.storage.AccountInfo result = await PoC.QueryContractStorage_AccountInfoAtAddress(contractAddress);
 
-            Assert.NotNull(result);
+            Assert.NotNull(result); // call successfull
+
             Assert.Equal(expected: AccountType.Contract, result.AccountType.Value);
-            _output.WriteLine(result.ToString());
+            var contractInfo = result.AccountType.Value2 as ContractInfo;
+
+            _output.WriteLine(contractInfo.TrieId.ToString());
         }
 
-        [Fact]
+        [Fact]  
         public async Task TestDecodeOfResponse()
         {
             PassetHub.NetApi.Generated.Model.pallet_revive.storage.AccountInfo info = new PassetHub.NetApi.Generated.Model.pallet_revive.storage.AccountInfo();
